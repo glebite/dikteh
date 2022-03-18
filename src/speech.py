@@ -13,7 +13,7 @@ class Speaker:
         """
         self.platform = platform.system()
         if self.platform == 'Windows':
-            import win32com
+            import win32com.client
             self.speaker = win32com.client.Dispatch('SAPI.SpVoice')
 
     def _winspeak(self, message):
