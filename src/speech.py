@@ -16,7 +16,7 @@ class Speaker:
         if self.platform == 'Windows':
             import win32com.client
             self.speaker = win32com.client.Dispatch('SAPI.SpVoice')
-            self.speaker = self_winspeak
+            self.speaker = self._winspeak
         elif self.platform == 'Linux':
             import distutils.spawn
             import os
