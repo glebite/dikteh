@@ -12,6 +12,9 @@ class Speaker:
     def __init__(self):
         """__init__ - constructor for the Speaker class
         """
+        pass
+
+    def configure(self):
         self.platform = platform.system()
         if self.platform == 'Windows':
             import win32com.client

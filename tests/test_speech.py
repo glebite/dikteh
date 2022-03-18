@@ -1,6 +1,12 @@
 import pytest
 from speech import Speaker
+import functions
+from mock import Mock
+import sys
 
-def test_object_creation():
-    x = Speaker()
-    assert x, 'Speaker did not get created.'
+class TestA:
+    def test_01(self, mocker, capsys):
+        sys.modules['platform.system'] = Mock()
+        x = Speaker()
+        x.configure()
+        print(f'Platform? {x.platform=}')
