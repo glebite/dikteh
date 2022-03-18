@@ -27,7 +27,7 @@ class Speaker:
     def _winspeak(self, message):
         """
         """
-        self.speaker.Speak(message)
+        self.speaker.__call__(message)
 
     def _linspeak(self, message):
         os.system(f'espeak "{message}"')
