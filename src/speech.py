@@ -43,6 +43,5 @@ class Speaker:
         self.speaker_function.__call__(message)
 
 
-
 if __name__ == "__main__":
     pass
