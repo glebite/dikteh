@@ -16,13 +16,13 @@ class Speaker:
         if self.platform == 'Windows':
             import win32com.client
             self.speaker = win32com.client.Dispatch('SAPI.SpVoice')
-            self.speaker = self._winspeak
+            self.speaker_function = self._winspeak
         elif self.platform == 'Linux':
             import distutils.spawn
             import os
             if not distutils.spawn.find_executable('espeak'):
                 raise RuntimeError('espeak not found - install it.')
-            self.speaker = self._linspeak
+            self.speaker_function = self._linspeak
 
     def _winspeak(self, message):
         """
@@ -35,7 +35,7 @@ class Speaker:
     def speak(self, message):
         """speak - use the os type to "say" something
         """
-        self.speaker.__call__(message)
+        self.speaker_function.__call__(message)
 
 
 
