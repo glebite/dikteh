@@ -23,6 +23,8 @@ class Speaker:
             if not distutils.spawn.find_executable('espeak'):
                 raise RuntimeError('espeak not found - install it.')
             self.speaker_function = self._linspeak
+        else:
+            raise ValueError(f'Unkown os: {self.platform=}')
 
     def _winspeak(self, message):
         """
