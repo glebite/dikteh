@@ -14,15 +14,25 @@ The programme will evaluate whether or not the word matches the spoken word.  A 
 Initially, the plan was to run on Linux but the user base that was sampled is using Windows so the development focus and testing will be on a Windows environment that is running the text to speach language pack of English.  
 
 ### Windows:  
-(if git is installed):  
-C:\Users\Imawesome> git clone https://github.com/glebite/dikteh  
-
-(if git is not installed):  
-[How to install git on windows.](https://phoenixnap.com/kb/how-to-install-git-windows)  
+#### Python installation:
+#### DIKTEH Installation:  
+1) (if git is installed):  
+&nbsp;&nbsp;&nbsp;C:\Users\Imawesome> git clone https://github.com/glebite/dikteh  
 
 OR  
 
-Navigate in your favourite browser to [https://github.com/glebite/dikteh](https://github.com/glebite/dikteh) and select Code->Download ZIP
+1) Navigate in your favourite browser to [https://github.com/glebite/dikteh](https://github.com/glebite/dikteh) and select Code->Download ZIP.  You will need to unzip the file to create the folder directory structure.  
+
+2) cd dikteh:  
+&nbsp;&nbsp;&nbsp;C:\Users\Imawesome> cd dikteh  
+
+3) set up the requirements for the tool:  
+&nbsp;&nbsp;&nbsp;C:\Users\Imawesome\dikteh> python3 -m pip install -r requirements.txt
+
+
+### Git installation on Windows:  
+
+[How to install git on windows.](https://phoenixnap.com/kb/how-to-install-git-windows)  
 
 
 
