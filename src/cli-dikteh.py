@@ -32,7 +32,7 @@ def remove_punctuation(value):
     """
     for character in string.punctuation:
         value = value.replace(character, '')
-        return value
+    return value
 
 
 if __name__ == "__main__":
