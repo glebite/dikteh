@@ -14,9 +14,13 @@ The programme will evaluate whether or not the word matches the spoken word.  A 
 Initially, the plan was to run on Linux but the user base that was sampled is using Windows so the development focus and testing will be on a Windows environment that is running the text to speach language pack of English.  
 
 ### Windows:  
-#### Python installation:
+
+#### Python installation:  
+If python is not installed on your system, follow these instructions to install python:  
+&nbsp;&nbsp;&nbsp;[Installation of python3 on Windows](https://phoenixnap.com/kb/how-to-install-python-3-windows)  
+
 #### DIKTEH Installation:  
-1) (if git is installed):  
+1) (if git is installed - look below for installation instructions):  
 &nbsp;&nbsp;&nbsp;C:\Users\Imawesome> git clone https://github.com/glebite/dikteh  
 
 OR  
@@ -27,8 +31,20 @@ OR
 &nbsp;&nbsp;&nbsp;C:\Users\Imawesome> cd dikteh  
 
 3) set up the requirements for the tool:  
+
+**(virtual environment creation)**  
+&nbsp;&nbsp;&nbsp;C:\Users\Imawesome\dikteh> python3 -m venv venv  
+**(activate the virtual environment)**  
+&nbsp;&nbsp;&nbsp;C:\Users\Imawesome\dikteh> venv\Scripts\activate.bat  
+**(install the required modules from the requirements.txt file)**  
 &nbsp;&nbsp;&nbsp;C:\Users\Imawesome\dikteh> python3 -m pip install -r requirements.txt
 
+4) Execute the programme:  
+&nbsp;&nbsp;&nbsp;C:\Users\Imawesome\dikteh> python3 src\cli-dikteh.py data\Sentences.xslx.xls  
+
+5) Feedback:  
+Please use the Issues field on github to report a found issue.  Please include any and all error messages from the system.  This will aid in speedier fixes for your enjoyment.  
+&nbsp;&nbsp;&nbsp;[Issues](https://github.com/glebite/dikteh/issues)  
 
 ### Git installation on Windows:  
 
