@@ -27,13 +27,15 @@ class CLI:
         """
         return self.df.sample()['Sentence'].values
 
-def remove_punctuation(value):
-    """
-    """
-    for character in string.punctuation:
-        value = value.replace(character, '')
-    return value
-
+    def remove_punctuation(self, value):
+        """
+        """
+        return "".join([char for char in value
+                        if char not in string.punctuation])
+    
+    def game_play(self):
+        """
+        """
 
 if __name__ == "__main__":
     game = CLI(sys.argv[1])
