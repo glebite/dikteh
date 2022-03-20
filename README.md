@@ -39,16 +39,20 @@ OR
 **(install the required modules from the requirements.txt file)**  
 &nbsp;&nbsp;&nbsp;C:\Users\Imawesome\dikteh> python3 -m pip install -r requirements.txt
 
-4) Execute the programme:  
+### Programme Execution:  
+**(activate the virtual environment)**  
+&nbsp;&nbsp;&nbsp;C:\Users\Imawesome\dikteh> venv\Scripts\activate.bat  
+
+Execute the programme:  
 &nbsp;&nbsp;&nbsp;C:\Users\Imawesome\dikteh> python3 src\cli-dikteh.py data\Sentences.xslx.xls  
 
-5) Feedback:  
+### Feedback:  
 Please use the Issues field on github to report a found issue.  Please include any and all error messages from the system.  This will aid in speedier fixes for your enjoyment.  
 &nbsp;&nbsp;&nbsp;[Issues](https://github.com/glebite/dikteh/issues)  
+
 
 ### Git installation on Windows:  
 
 [How to install git on windows.](https://phoenixnap.com/kb/how-to-install-git-windows)  
-
 
 
