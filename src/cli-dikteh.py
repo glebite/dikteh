@@ -9,6 +9,7 @@ from speech import Speaker
 class CLI:
     """
     """
+
     def __init__(self, wordfile):
         """
         """
@@ -27,7 +28,7 @@ class CLI:
 
     def pick_random_sentence(self):
         """pick_random_sentence - pick a random one
-        
+
         params:
         n/a
 
@@ -70,7 +71,7 @@ class CLI:
 
         params:
         n/a
-        
+
         returns:
         n/a
 
@@ -79,18 +80,20 @@ class CLI:
         """
         for count in range(0, self.sentences_to_play):
             print(f'Playing sentence {count} of {self.sentences_to_play}.')
-            for word in game.pick_random_sentence().tolist()[0].split():     
+            for word in game.pick_random_sentence().tolist()[0].split():
                 word = game.remove_punctuation(word).lower()
                 game.speaker.speak(word)
                 readword = input('Enter the word that you heard: ')
                 if readword != word:
-                    print(f'You typed: {readword}  and the word spoken was: {word}')
+                    print(
+                        f'You typed: {readword} word spoken was: {word}')
                     self.score['missed'] += 1
                     self.failed_words.append((word, readword))
                 else:
                     self.score['success'] += 1
-                    print(f'Correct!')       
+                    print(f'Correct!')
         self.report_score()
+
 
 if __name__ == "__main__":
     game = CLI(sys.argv[1])
