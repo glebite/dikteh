@@ -16,7 +16,7 @@ class CLI:
         self.wordfile = wordfile
         self.speaker = Speaker()
         self.speaker.configure()
-        self.sentences_to_play = 1
+        self.sentences_to_play = 2
         self.failed_words = list()
         self.score = {'success': 0, 'missed': 0}
         pd.set_option('display.max_colwidth', None)
@@ -58,7 +58,7 @@ class CLI:
     def report_score(self):
         """
         """
-        print('Good work with studying!')
+        print('\n\nGood work with studying!')
         print(f'Sentences used: {self.sentences_to_play}')
         print(f'Success: {self.score["success"]}')
         print(f'Missed : {self.score["missed"]}')
@@ -80,7 +80,9 @@ class CLI:
         """
         for count in range(0, self.sentences_to_play):
             print(f'Playing sentence {count} of {self.sentences_to_play}.')
-            for word in game.pick_random_sentence().tolist()[0].split():
+            sentence = game.pick_random_sentence().tolist()[0].split()
+            for word in sentence:
+                word = word.replace("’", "'")
                 word = game.remove_punctuation(word).lower()
                 game.speaker.speak(word)
                 readword = input('Enter the word that you heard: ')
@@ -92,6 +94,7 @@ class CLI:
                 else:
                     self.score['success'] += 1
                     print(f'Correct!')
+            print(f'\nThe sentence was: {sentence}')
         self.report_score()
 
 
