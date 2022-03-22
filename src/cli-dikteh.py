@@ -10,13 +10,13 @@ class CLI:
     """
     """
 
-    def __init__(self, wordfile):
+    def __init__(self, wordfile, sentence_count):
         """
         """
         self.wordfile = wordfile
         self.speaker = Speaker()
         self.speaker.configure()
-        self.sentences_to_play = 2
+        self.sentences_to_play = int(sentence_count)
         self.failed_words = list()
         self.score = {'success': 0, 'missed': 0}
         pd.set_option('display.max_colwidth', None)
@@ -56,7 +56,7 @@ class CLI:
                         if char not in string.punctuation])
 
     def report_score(self):
-        """
+        """report_score - a simple dump of stats, sentences, etc...
         """
         print('\n\nGood work with studying!')
         print(f'Sentences used: {self.sentences_to_play}')
@@ -78,7 +78,7 @@ class CLI:
         raises:
         n/a
         """
-        for count in range(0, self.sentences_to_play):
+        for count in range(1, self.sentences_to_play+1):
             print(f'Playing sentence {count} of {self.sentences_to_play}.')
             sentence = game.pick_random_sentence().tolist()[0].split()
             for word in sentence:
@@ -86,6 +86,7 @@ class CLI:
                 word = game.remove_punctuation(word).lower()
                 game.speaker.speak(word)
                 readword = input('Enter the word that you heard: ')
+                readword = readword.strip()
                 if readword != word:
                     print(
                         f'You typed: {readword} word spoken was: {word}')
@@ -99,6 +100,6 @@ class CLI:
 
 
 if __name__ == "__main__":
-    game = CLI(sys.argv[1])
+    game = CLI(sys.argv[1], sys.argv[2])
     game.load_sentences()
     game.game_play()
