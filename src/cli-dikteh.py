@@ -1,4 +1,4 @@
-"""
+"""cli-dikteh.py
 """
 import sys
 import pandas as pd
@@ -7,9 +7,8 @@ from speech import Speaker
 
 
 class CLI:
+    """CLI - a class to handle this simple game
     """
-    """
-
     def __init__(self, wordfile, sentence_count):
         """
         """
@@ -19,6 +18,7 @@ class CLI:
         self.sentences_to_play = int(sentence_count)
         self.failed_words = list()
         self.score = {'success': 0, 'missed': 0}
+
         pd.set_option('display.max_colwidth', None)
 
     def load_sentences(self):
@@ -42,6 +42,9 @@ class CLI:
 
     def remove_punctuation(self, sentence):
         """remove_punctuation - just get rid of them all!
+
+        Essentially take the sentence and split it into characters
+        while removing any punctuation.
 
         params:
         sentence - string - the sentence being evaluated
@@ -82,8 +85,7 @@ class CLI:
             print(f'Playing sentence {count} of {self.sentences_to_play}.')
             sentence = game.pick_random_sentence().tolist()[0].split()
             for word in sentence:
-                word = word.replace("’", "'")
-                word = game.remove_punctuation(word).lower()
+                word = game.remove_punctuation(word).lower().replace("’", "'")
                 game.speaker.speak(word)
                 readword = input('Enter the word that you heard: ')
                 readword = readword.strip()
