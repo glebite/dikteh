@@ -11,6 +11,27 @@ class TUI:
     """TUI 
     """
     def __init__(self, wordfile, sentence_count):
+        self.stdscr = None
+        pass
+
+    def config(self):
+        """
+        """
+        pass
+
+    def start_display(self):
+        """
+        """
+        self.stdscr = curses.initscr()
+
+    def stop_display(self):
+        """
+        """
+        self.stdscr.endwin()
+
+    def __del__(self):
+        """
+        """
         pass
 
 
