@@ -5,9 +5,10 @@ import pandas as pd
 import string
 from speech import Speaker
 import curses
+from cli-dikteh import CLI
 
 
-class TUI:
+class TUI(CLI):
     """TUI 
     """
     def __init__(self, wordfile, sentence_count):
