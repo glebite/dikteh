@@ -1,23 +1,19 @@
-"""tui-dikteh.py
+"""tui_dikteh.py
 """
 import sys
 import pandas as pd
 import string
 from speech import Speaker
 import curses
-from cli-dikteh import CLI
+from cli_dikteh import CLI
 
 
 class TUI(CLI):
     """TUI 
     """
     def __init__(self, wordfile, sentence_count):
+        super(TUI, self).__init__(wordfile , sentence_count)
         self.stdscr = None
-        pass
-
-    def config(self):
-        """
-        """
         pass
 
     def start_display(self):
@@ -37,4 +33,7 @@ class TUI(CLI):
 
 
 if __name__ == "__main__":
-    pass
+    x = TUI(sys.argv[1], sys.argv[2])
+    x.load_sentences()
+    x.game_play()
+

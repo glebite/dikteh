@@ -83,10 +83,10 @@ class CLI:
         """
         for count in range(1, self.sentences_to_play+1):
             print(f'Playing sentence {count} of {self.sentences_to_play}.')
-            sentence = game.pick_random_sentence().tolist()[0].split()
+            sentence = self.pick_random_sentence().tolist()[0].split()
             for word in sentence:
-                word = game.remove_punctuation(word).lower().replace("’", "'")
-                game.speaker.speak(word)
+                word = self.remove_punctuation(word).lower().replace("’", "'")
+                self.speaker.speak(word)
                 readword = input('Enter the word that you heard: ')
                 readword = readword.strip()
                 if readword != word:
