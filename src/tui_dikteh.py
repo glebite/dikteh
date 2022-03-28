@@ -17,19 +17,19 @@ class TUI(CLI):
         pass
 
     def start_display(self):
-        """
+        """start_display - instantiate the screen member
         """
         self.stdscr = curses.initscr()
 
     def stop_display(self):
-        """
+        """stop_display - shut down the display for now
         """
         self.stdscr.endwin()
 
     def __del__(self):
+        """__del__ - handle the destruction of the object
         """
-        """
-        pass
+        self.stop_display()
 
 
 if __name__ == "__main__":
