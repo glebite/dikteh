@@ -31,6 +31,33 @@ class TUI(CLI):
         """
         self.stop_display()
 
+    """ interaction code """
+
+    def display_message(self, coord_pair, message):
+        """
+        """
+        pass
+    
+    def game_play(self):
+        """
+        """
+        pass
+    
+    def accept_input(self):
+        """
+        """
+        pass
+
+    def display_progress(self):
+        """
+        """
+        pass
+
+    def create_report(self):
+        """
+        """
+        pass
+
 
 if __name__ == "__main__":
     x = TUI(sys.argv[1], sys.argv[2])
