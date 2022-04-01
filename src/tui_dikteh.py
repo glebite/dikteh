@@ -53,6 +53,7 @@ class TUI(CLI):
         """
         """
         self.start_display()
+        self.display_progress()
         time.sleep(10)
         self.stop_display()
     
@@ -64,7 +65,8 @@ class TUI(CLI):
     def display_progress(self):
         """
         """
-        pass
+        self.label(1,2, 'Sentence 1/4')
+        self.label(2,3, 'Success: 5')
 
     def create_report(self):
         """
