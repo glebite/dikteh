@@ -1,4 +1,4 @@
-"""cli-dikteh.py
+"""cli_dikteh.py
 """
 import sys
 import pandas as pd

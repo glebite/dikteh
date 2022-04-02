@@ -1,12 +1,9 @@
 """tui_dikteh.py
 """
 import sys
-import pandas as pd
-import string
-from speech import Speaker
 import curses
-from cli_dikteh import CLI
 import time
+from cli_dikteh import CLI
 
 
 class TUI(CLI):
@@ -58,15 +55,17 @@ class TUI(CLI):
         self.stop_display()
     
     def accept_input(self):
-        """
+        """accept_input - custom input - possibly a text box?
         """
         pass
 
     def display_progress(self):
         """
         """
-        self.label(1,2, 'Sentence 1/4')
-        self.label(2,3, 'Success: 5')
+        self.label(0, 0, 'TUI-Dikteh go for 20!')
+        self.label(5, 60, f'Sentence 1/{self.sentences_to_play}')
+        self.label(6, 60, f'Success: {self.score["success"]}')
+        self.label(7, 60, f'Missed : {self.score["missed"]}')        
 
     def create_report(self):
         """
