@@ -11,6 +11,7 @@ SEN_COUNT_COORDS = (5,60)
 SUCCESS_COORDS = (6,60)
 MISSED_COORDS = (7,60)
 
+
 class TUI(CLI):
     """TUI 
     """
@@ -24,6 +25,9 @@ class TUI(CLI):
         self.stdscr = curses.initscr()
         if not self.stdscr:
             print("Problem opening the window...")
+        self.outwin = self.stdscr.derwin(5,5,10,10)
+        self.outwin.box()
+            
         curses.noecho()
         curses.curs_set(0)
 
