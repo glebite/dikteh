@@ -43,6 +43,12 @@ class TUI(CLI):
         row, column = row_col
         self.stdscr.addstr(row, column, message)
         self.stdscr.refresh()
+
+    def text_input(self, row_col, width_height):
+        """text_input - text box
+        """
+        row, column = row_col
+        width, height = width_height
         
     def __del__(self):
         """__del__ - handle the destruction of the object
@@ -59,11 +65,6 @@ class TUI(CLI):
         time.sleep(10)
         self.stop_display()
     
-    def accept_input(self):
-        """accept_input - custom input - possibly a text box?
-        """
-        pass
-
     def display_progress(self):
         """
         """
