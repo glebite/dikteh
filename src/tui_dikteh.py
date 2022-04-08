@@ -25,8 +25,6 @@ class TUI(CLI):
         self.stdscr = curses.initscr()
         if not self.stdscr:
             print("Problem opening the window...")
-        self.outwin = self.stdscr.derwin(5,5,10,10)
-        self.outwin.box()
             
         curses.noecho()
         curses.curs_set(0)
@@ -35,7 +33,7 @@ class TUI(CLI):
         """stop_display - shut down the display for now
         """
         curses.curs_set(1)
-        self.stdscr.endwin()
+        curses.endwin()
 
     def label(self, row_col, message):
         """
@@ -49,22 +47,16 @@ class TUI(CLI):
         """
         row, column = row_col
         width, height = width_height
+        self.outwin = self.stdscr.derwin(height, width, row, column)
+        self.outwin.box()
+        self.outwin.addstr(0, 0, "Hello")
+        self.stdscr.refresh()
         
     def __del__(self):
         """__del__ - handle the destruction of the object
         """
         # self.stop_display()
 
-    """ interaction code """
-    
-    def game_play(self):
-        """
-        """
-        self.start_display()
-        self.display_progress()
-        time.sleep(10)
-        self.stop_display()
-    
     def display_progress(self):
         """
         """
@@ -73,6 +65,17 @@ class TUI(CLI):
         self.label(SUCCESS_COORDS,  f'Success: {self.score["success"]}')
         self.label(MISSED_COORDS, f'Missed : {self.score["missed"]}')        
 
+    """ interaction code """
+    
+    def game_play(self):
+        """
+        """
+        self.start_display()
+        self.display_progress()
+        self.text_input((5,10), (5,5))
+        time.sleep(10)
+        self.stop_display()
+    
     def create_report(self):
         """
         """
