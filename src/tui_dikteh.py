@@ -47,9 +47,10 @@ class TUI(CLI):
         """
         row, column = row_col
         width, height = width_height
-        self.outwin = self.stdscr.derwin(height, width, row, column)
+        self.outwin = self.stdscr.subwin(5,20, 10,10)
+        self.outwin.immedok(True)
         self.outwin.box()
-        self.outwin.addstr(0, 0, "Hello")
+        self.outwin.addstr(1,1, "Message")
         self.stdscr.refresh()
         
     def __del__(self):
