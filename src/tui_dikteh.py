@@ -2,6 +2,7 @@
 """
 import sys
 import curses
+import curses.textpad
 import time
 from cli_dikteh import CLI
 
@@ -47,11 +48,23 @@ class TUI(CLI):
         """
         row, column = row_col
         width, height = width_height
-        self.outwin = self.stdscr.subwin(5,20, 10,10)
+        self.stdscr.addstr(row-1, column, 'User Input:')
+        self.outwin = self.stdscr.subwin(3 ,30, row, column)
         self.outwin.immedok(True)
         self.outwin.box()
-        self.outwin.addstr(1,1, "Message")
+        tb = curses.textpad.Textbox(self.outwin, insert_mode=True)
+        self.outwin.addstr(1, 1, 'whatever')
         self.stdscr.refresh()
+
+    def last_response(self, row_col):
+        row, column = row_col
+        self.stdscr.addstr(row-1, column, 'Game message:')
+        self.outwin = self.stdscr.subwin(3 ,30, row, column)
+        self.outwin.immedok(True)
+        self.outwin.box()
+        tb = curses.textpad.Textbox(self.outwin, insert_mode=True)
+        self.outwin.addstr(1, 1, 'Misspelled: wrangler')
+        self.stdscr.refresh()        
         
     def __del__(self):
         """__del__ - handle the destruction of the object
@@ -74,6 +87,7 @@ class TUI(CLI):
         self.start_display()
         self.display_progress()
         self.text_input((5,10), (5,5))
+        self.last_response((10,10))
         time.sleep(10)
         self.stop_display()
     
