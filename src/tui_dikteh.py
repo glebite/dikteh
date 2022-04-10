@@ -11,6 +11,8 @@ TITLE_COORDS = (0,0)
 SEN_COUNT_COORDS = (5,60)
 SUCCESS_COORDS = (6,60)
 MISSED_COORDS = (7,60)
+TEXT_INPUT_COORDS = (5,5)
+MESSAGE_COORDS = (15, 5)
 
 
 class TUI(CLI):
@@ -37,7 +39,7 @@ class TUI(CLI):
         curses.endwin()
 
     def label(self, row_col, message):
-        """
+        """label - draws text at a specified row, column point
         """
         row, column = row_col
         self.stdscr.addstr(row, column, message)
@@ -49,7 +51,7 @@ class TUI(CLI):
         row, column = row_col
         width, height = width_height
         self.stdscr.addstr(row-1, column, 'User Input:')
-        self.outwin = self.stdscr.subwin(3 ,30, row, column)
+        self.outwin = self.stdscr.subwin(3 ,40, row, column)
         self.outwin.immedok(True)
         self.outwin.box()
         tb = curses.textpad.Textbox(self.outwin, insert_mode=True)
@@ -59,7 +61,7 @@ class TUI(CLI):
     def last_response(self, row_col):
         row, column = row_col
         self.stdscr.addstr(row-1, column, 'Game message:')
-        self.outwin = self.stdscr.subwin(3 ,30, row, column)
+        self.outwin = self.stdscr.subwin(3, 50, row, column)
         self.outwin.immedok(True)
         self.outwin.box()
         tb = curses.textpad.Textbox(self.outwin, insert_mode=True)
@@ -86,8 +88,8 @@ class TUI(CLI):
         """
         self.start_display()
         self.display_progress()
-        self.text_input((5,10), (5,5))
-        self.last_response((10,10))
+        self.text_input(TEXT_INPUT_COORDS, (5,5))
+        self.last_response(MESSAGE_COORDS)
         time.sleep(10)
         self.stop_display()
     
