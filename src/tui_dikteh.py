@@ -59,6 +59,8 @@ class TUI(CLI):
         self.stdscr.refresh()
 
     def last_response(self, row_col):
+        """last_response -
+        """
         row, column = row_col
         self.stdscr.addstr(row-1, column, 'Game message:')
         self.outwin = self.stdscr.subwin(3, 50, row, column)
@@ -74,7 +76,7 @@ class TUI(CLI):
         # self.stop_display()
 
     def display_progress(self):
-        """
+        """ display_progress
         """
         self.label(TITLE_COORDS, 'TUI-Dikteh go for 20!')
         self.label(SEN_COUNT_COORDS, f'Sentence 1/{self.sentences_to_play}')
@@ -84,17 +86,19 @@ class TUI(CLI):
     """ interaction code """
     
     def game_play(self):
-        """
+        """ game_play
         """
         self.start_display()
         self.display_progress()
+        x = self.pick_random_sentence()
         self.text_input(TEXT_INPUT_COORDS, (5,5))
         self.last_response(MESSAGE_COORDS)
         time.sleep(10)
         self.stop_display()
+        print(x)
     
     def create_report(self):
-        """
+        """ create_report
         """
         pass
 
