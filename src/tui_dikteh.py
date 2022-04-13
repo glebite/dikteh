@@ -54,7 +54,7 @@ class TUI(CLI):
         self.outwin = self.stdscr.subwin(3 ,40, row, column)
         self.outwin.immedok(True)
         self.outwin.box()
-        tb = curses.textpad.Textbox(self.outwin, insert_mode=True)
+        # tb = curses.textpad.Textbox(self.outwin, insert_mode=True)
         self.outwin.addstr(1, 1, 'whatever')
         self.stdscr.refresh()
 
@@ -66,7 +66,7 @@ class TUI(CLI):
         self.outwin = self.stdscr.subwin(3, 50, row, column)
         self.outwin.immedok(True)
         self.outwin.box()
-        tb = curses.textpad.Textbox(self.outwin, insert_mode=True)
+        # tb = curses.textpad.Textbox(self.outwin, insert_mode=True)
         self.outwin.addstr(1, 1, 'Misspelled: wrangler')
         self.stdscr.refresh()        
         
