@@ -55,4 +55,9 @@ Please use the Issues field on github to report a found issue.  Please include a
 
 [How to install git on windows.](https://phoenixnap.com/kb/how-to-install-git-windows)  
 
+## TUI version:  
+  
+![TUI screenshot sample](./images/TUI-concept-view.png)
+
+
 
