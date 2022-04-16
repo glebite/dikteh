@@ -20,15 +20,13 @@ class TUI(CLI):
     """
     def __init__(self, wordfile, sentence_count):
         super(TUI, self).__init__(wordfile , sentence_count)
-        self.stdscr = None
 
     def start_display(self):
         """start_display - instantiate the screen member
         """
         self.stdscr = curses.initscr()
         if not self.stdscr:
-            print("Problem opening the window...")
-            
+            print("Problem opening the window...")            
         curses.noecho()
         curses.curs_set(0)
 
