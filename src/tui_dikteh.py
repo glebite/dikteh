@@ -13,7 +13,7 @@ SUCCESS_COORDS = (6,60)
 MISSED_COORDS = (7,60)
 TEXT_INPUT_COORDS = (5,5)
 MESSAGE_COORDS = (15, 5)
-
+LAST_RESPONSE_SIZE = (3, 50)
 
 class TUI(CLI):
     """TUI 
@@ -51,20 +51,23 @@ class TUI(CLI):
         self.stdscr.addstr(row-1, column, 'User Input:')
         self.outwin = self.stdscr.subwin(3 ,40, row, column)
         self.outwin.immedok(True)
-        self.outwin.box()
+        self.outwin.border(0)
         tb = curses.textpad.Textbox(self.outwin, insert_mode=True)
-        tb = tb.edit()        
+        tb.edit()
+        message = str(tb.gather())
         self.outwin.addstr(1, 1, 'whatever')
         self.stdscr.refresh()
 
     def last_response(self, row_col):
-        """last_response -
+        """last_response - feedback provided for the last response
         """
         row, column = row_col
+        height, width = LAST_RESPONSE_SIZE
         self.stdscr.addstr(row-1, column, 'Game message:')
-        self.outwin = self.stdscr.subwin(3, 50, row, column)
+        self.outwin = self.stdscr.subwin(height, width, row, column)
         self.outwin.immedok(True)
         self.outwin.box()
+        self.outwin.addstr(1, 1, 'last message')
         self.stdscr.refresh()        
         
     def __del__(self):
