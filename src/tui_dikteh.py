@@ -25,6 +25,7 @@ class TUI(CLI):
         """start_display - instantiate the screen member
         """
         self.stdscr = curses.initscr()
+        self.last_message = ""
         if not self.stdscr:
             print("Problem opening the window...")            
         curses.noecho()
@@ -43,6 +44,12 @@ class TUI(CLI):
         self.stdscr.addstr(row, column, message)
         self.stdscr.refresh()
 
+    def user_input(self, row, col):
+        curses.echo()
+        self.stdscr.refresh()
+        input = self.stdscr.getstr(row + 1, col + 1, 40)
+        return input
+    
     def text_input(self, row_col, width_height):
         """text_input - text box
         """
@@ -52,10 +59,9 @@ class TUI(CLI):
         self.outwin = self.stdscr.subwin(3 ,40, row, column)
         self.outwin.immedok(True)
         self.outwin.border(0)
-        tb = curses.textpad.Textbox(self.outwin, insert_mode=True)
-        tb.edit()
-        message = str(tb.gather())
-        self.outwin.addstr(1, 1, 'whatever')
+
+        self.last_message = self.user_input(row, column)
+
         self.stdscr.refresh()
 
     def last_response(self, row_col):
@@ -67,7 +73,7 @@ class TUI(CLI):
         self.outwin = self.stdscr.subwin(height, width, row, column)
         self.outwin.immedok(True)
         self.outwin.box()
-        self.outwin.addstr(1, 1, 'last message')
+        self.outwin.addstr(1, 1, self.last_message)
         self.stdscr.refresh()        
         
     def __del__(self):
