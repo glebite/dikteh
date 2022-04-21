@@ -62,7 +62,7 @@ class TUI(CLI):
         self.outwin.immedok(True)
         self.outwin.border(0)
 
-        self.last_message = self.user_input(row, column)
+        self.last_message = self.user_input(row, column).decode('ascii')
 
         self.stdscr.refresh()
 
@@ -93,59 +93,29 @@ class TUI(CLI):
         self.label(MISSED_COORDS, f'Missed : {self.score["missed"]}')        
 
     """ interaction code """
-    # def game_play(self):
-    #     """game_play - play the loop
-
-    #     params:
-    #     n/a
-
-    #     returns:
-    #     n/a
-
-    #     raises:
-    #     n/a
-    #     """
-    #     for count in range(1, self.sentences_to_play+1):
-    #         print(f'Playing sentence {count} of {self.sentences_to_play}.')
-    #         sentence = self.pick_random_sentence().tolist()[0].split()
-    #         for word in sentence:
-    #             word = self.remove_punctuation(word).lower().replace("’", "'")
-    #             self.speaker.speak(word)
-    #             readword = input('Enter the word that you heard: ')
-    #             readword = readword.strip()
-    #             if readword != word:
-    #                 print(
-    #                     f'You typed: {readword} word spoken was: {word}')
-    #                 self.score['missed'] += 1
-    #                 self.failed_words.append((word, readword))
-    #             else:
-    #                 self.score['success'] += 1
-    #                 print(f'Correct!')
-    #         print(f'\nThe sentence was: {sentence}')
-    #     self.report_score()
-        
     def game_play(self):
         """ game_play
         """
+        result = list()
         self.start_display()
         self.display_progress()
         x = self.pick_random_sentence()
-        sentence = x.tolist()[0].split()
+        sentence = self.remove_punctuation(x).split()
         for word in sentence:
+            word = word.lower()
             self.speaker.speak(word)
             self.text_input(TEXT_INPUT_COORDS, (5,5))
             self.last_response(EXPECTED_COORDS, 'Expected word:', word)
             self.last_response(YOUR_COORDS, 'Your word:', self.last_message)
+            result.append((word, self.last_message))            
             if word != self.last_message:
                 self.score['missed'] += 1
             else:
                 self.score['success'] += 1
             self.display_progress()
              
-        time.sleep(10)
         self.stop_display()
-        print(x)
-    
+
     def create_report(self):
         """ create_report
         """
