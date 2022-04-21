@@ -136,6 +136,12 @@ class TUI(CLI):
             self.text_input(TEXT_INPUT_COORDS, (5,5))
             self.last_response(EXPECTED_COORDS, 'Expected word:', word)
             self.last_response(YOUR_COORDS, 'Your word:', self.last_message)
+            if word != self.last_message:
+                self.score['missed'] += 1
+            else:
+                self.score['success'] += 1
+            self.display_progress()
+             
         time.sleep(10)
         self.stop_display()
         print(x)
