@@ -62,7 +62,7 @@ class TUI(CLI):
         self.outwin.immedok(True)
         self.outwin.border(0)
 
-        self.last_message = self.user_input(row, column).decode('ascii')
+        self.last_message = self.user_input(row, column).decode('ascii').strip()
 
         self.stdscr.refresh()
 
