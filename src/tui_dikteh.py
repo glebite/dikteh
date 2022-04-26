@@ -5,6 +5,7 @@ import curses
 import curses.textpad
 import time
 from cli_dikteh import CLI
+import configparser
 
 
 TITLE_COORDS = (0,0)
@@ -123,6 +124,10 @@ class TUI(CLI):
 
 
 if __name__ == "__main__":
-    x = TUI(sys.argv[1], sys.argv[2])
+    config = configparser.ConfigParser()
+    config.read(sys.argv[1])
+    sentences = config['Dikteh']['SentenceFile']
+    num_plays = config['Dikteh']['NumberOfSentences']
+    x = TUI(sentences, num_plays)
     x.load_sentences()
     x.game_play()
