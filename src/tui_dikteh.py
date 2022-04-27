@@ -22,6 +22,7 @@ class TUI(CLI):
     """
     def __init__(self, wordfile, sentence_count):
         super(TUI, self).__init__(wordfile , sentence_count)
+        self.current_sentence = 1
 
     def start_display(self):
         """start_display - instantiate the screen member
@@ -89,7 +90,7 @@ class TUI(CLI):
         """ display_progress
         """
         self.label(TITLE_COORDS, 'TUI-Dikteh go for 20!')
-        self.label(SEN_COUNT_COORDS, f'Sentence 1/{self.sentences_to_play}')
+        self.label(SEN_COUNT_COORDS, f'Sentence {self.current_sentence}/{self.sentences_to_play}')
         self.label(SUCCESS_COORDS,  f'Success: {self.score["success"]}')
         self.label(MISSED_COORDS, f'Missed : {self.score["missed"]}')        
 
@@ -114,8 +115,9 @@ class TUI(CLI):
                     self.score['missed'] += 1
                 else:
                     self.score['success'] += 1
-                    self.display_progress()
-                    
+                self.display_progress()
+            self.current_sentence += 1
+            self.display_progress()
         self.stop_display()
 
     def create_report(self):
