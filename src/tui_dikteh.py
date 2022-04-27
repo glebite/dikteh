@@ -100,21 +100,22 @@ class TUI(CLI):
         result = list()
         self.start_display()
         self.display_progress()
-        x = self.pick_random_sentence()
-        sentence = self.remove_punctuation(x).split()
-        for word in sentence:
-            word = word.lower()
-            self.speaker.speak(word)
-            self.text_input(TEXT_INPUT_COORDS, (5,5))
-            self.last_response(EXPECTED_COORDS, 'Expected word:', word)
-            self.last_response(YOUR_COORDS, 'Your word:', self.last_message)
-            result.append((word, self.last_message))            
-            if word != self.last_message:
-                self.score['missed'] += 1
-            else:
-                self.score['success'] += 1
-            self.display_progress()
-             
+        for round in range(self.sentences_to_play):
+            x = self.pick_random_sentence()
+            sentence = self.remove_punctuation(x).split()
+            for word in sentence:
+                word = word.lower()
+                self.speaker.speak(word)
+                self.text_input(TEXT_INPUT_COORDS, (5,5))
+                self.last_response(EXPECTED_COORDS, 'Expected word:', word)
+                self.last_response(YOUR_COORDS, 'Your word:', self.last_message)
+                result.append((word, self.last_message))            
+                if word != self.last_message:
+                    self.score['missed'] += 1
+                else:
+                    self.score['success'] += 1
+                    self.display_progress()
+                    
         self.stop_display()
 
     def create_report(self):
