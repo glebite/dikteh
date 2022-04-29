@@ -23,6 +23,7 @@ class TUI(CLI):
     def __init__(self, wordfile, sentence_count):
         super(TUI, self).__init__(wordfile , sentence_count)
         self.current_sentence = 1
+        self.missed_words = list()
 
     def start_display(self):
         """start_display - instantiate the screen member
@@ -113,6 +114,7 @@ class TUI(CLI):
                 result.append((word, self.last_message))            
                 if word != self.last_message:
                     self.score['missed'] += 1
+                    self.missed_words.append(word)
                 else:
                     self.score['success'] += 1
                 self.display_progress()
@@ -123,7 +125,8 @@ class TUI(CLI):
     def create_report(self):
         """ create_report
         """
-        pass
+        for missed_word in self.missed_words:
+            print(f'Missed: {missed_word}')
 
 
 if __name__ == "__main__":
@@ -134,3 +137,4 @@ if __name__ == "__main__":
     x = TUI(sentences, num_plays)
     x.load_sentences()
     x.game_play()
+    x.create_report()
