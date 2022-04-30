@@ -23,7 +23,7 @@ class TUI(CLI):
     def __init__(self, wordfile, sentence_count):
         super(TUI, self).__init__(wordfile , sentence_count)
         self.current_sentence = 1
-        self.missed_words = list()
+        self.missed_words = set()
 
     def start_display(self):
         """start_display - instantiate the screen member
@@ -106,7 +106,7 @@ class TUI(CLI):
             x = self.pick_random_sentence()
             sentence = self.remove_punctuation(x).split()
             for word in sentence:
-                word = word.lower()
+                word = self.remove_punctuation(word).lower().replace("’", "'")
                 self.speaker.speak(word)
                 self.text_input(TEXT_INPUT_COORDS, (5,5))
                 self.last_response(EXPECTED_COORDS, 'Expected word:', word)
@@ -114,7 +114,7 @@ class TUI(CLI):
                 result.append((word, self.last_message))            
                 if word != self.last_message:
                     self.score['missed'] += 1
-                    self.missed_words.append(word)
+                    self.missed_words.add(word)
                 else:
                     self.score['success'] += 1
                 self.display_progress()
