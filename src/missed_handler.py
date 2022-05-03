@@ -37,15 +37,20 @@ import json
 class MissedWords:
     """MissedWords
     """
-    def __init__(self, word_set=None):
-        pass
+    def __init__(self, file_name = None):
+        if not file_name:
+            raise ValueError(f'file_name needs to be not NULL')
+        self.missed_file = file_name
+        self.missed_words = dict()
 
     def read_words(self):
         with open(self.missed_file, 'r') as fp:
-            data = fp.read()
+            self.missed_words = fp.read()
 
     def write_words(self):
-        pass
-    
+        with open(self.missed_file, 'w') as fp:
+            fp.write(self.missed_words)
+
+
 if __name__ == "__main__":
     pass
