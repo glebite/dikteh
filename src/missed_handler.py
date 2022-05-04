@@ -53,4 +53,6 @@ class MissedWords:
 
 
 if __name__ == "__main__":
-    pass
+    x = MissedWords('missed_words.json')
+    x.read_words()
+    print(x.missed_words)
