@@ -38,18 +38,41 @@ class MissedWords:
     """MissedWords
     """
     def __init__(self, file_name = None):
+        """
+        """
         if not file_name:
             raise ValueError(f'file_name needs to be not NULL')
         self.missed_file = file_name
         self.missed_words = dict()
 
     def read_words(self):
+        """
+        """
         with open(self.missed_file, 'r') as fp:
             self.missed_words = fp.read()
 
     def write_words(self):
+        """
+        """
         with open(self.missed_file, 'w') as fp:
             fp.write(self.missed_words)
+
+    def add_word(self, word):
+        """
+        """
+        if word in self.missed_words.keys():
+            self.missed_words[word] += 1
+        else:
+            self.missed_words[word] = 3
+
+    def del_word(self, word):
+        """
+        """
+        if word in self.missed_words.keys():
+            if self.missed_words[word] == 1:
+                del self.missed_words[word]
+            else:
+                self.missed_words[word] -= 1
 
 
 if __name__ == "__main__":
