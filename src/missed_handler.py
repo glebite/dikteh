@@ -49,7 +49,8 @@ class MissedWords:
         """
         """
         with open(self.missed_file, 'r') as fp:
-            self.missed_words = fp.read()
+            temp = fp.read()
+            self.missed_words = json.loads(temp)
 
     def write_words(self):
         """
@@ -78,4 +79,10 @@ class MissedWords:
 if __name__ == "__main__":
     x = MissedWords('missed_words.json')
     x.read_words()
+    print(x.missed_words)
+    x.add_word('Hello')
+    print(x.missed_words)
+    x.del_word('Hello')
+    x.del_word('Hello')
+    x.del_word('Hello')
     print(x.missed_words)
