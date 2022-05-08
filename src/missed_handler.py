@@ -56,7 +56,7 @@ class MissedWords:
         """
         """
         with open(self.missed_file, 'w') as fp:
-            fp.write(self.missed_words)
+            fp.write(str(self.missed_words))
 
     def add_word(self, word):
         """
@@ -81,8 +81,4 @@ if __name__ == "__main__":
     x.read_words()
     print(x.missed_words)
     x.add_word('Hello')
-    print(x.missed_words)
-    x.del_word('Hello')
-    x.del_word('Hello')
-    x.del_word('Hello')
-    print(x.missed_words)
+    x.write_words()
