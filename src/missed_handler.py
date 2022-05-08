@@ -32,6 +32,8 @@ If the word is still mispelled, the value is incremented by
 Eventually, they will hear "thesaurus" and spell it correctly.
 """
 import json
+import errno
+import os
 
 
 class MissedWords:
@@ -48,6 +50,9 @@ class MissedWords:
     def read_words(self):
         """
         """
+        if not os.path.isfile(self.missed_file):
+            raise FileNotFoundError(
+                errno.ENOENT, os.strerror(errno.ENOENT), self.missed_file)        
         with open(self.missed_file, 'r') as fp:
             temp = fp.read()
             self.missed_words = json.loads(temp)
@@ -77,7 +82,7 @@ class MissedWords:
 
 
 if __name__ == "__main__":
-    x = MissedWords('missed_words.json')
+    x = MissedWords('missed_words2.json')
     x.read_words()
     print(x.missed_words)
     x.add_word('Hello')
