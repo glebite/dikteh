@@ -4,8 +4,9 @@ import sys
 import curses
 import curses.textpad
 import time
-from cli_dikteh import CLI
 import configparser
+from missed_handler import MissedWords
+from cli_dikteh import CLI
 
 
 TITLE_COORDS = (0,0)
@@ -23,7 +24,8 @@ class TUI(CLI):
     def __init__(self, wordfile, sentence_count):
         super(TUI, self).__init__(wordfile , sentence_count)
         self.current_sentence = 1
-        self.missed_words = set()
+        self.missed_words = MissedWords('missed_words.json')
+        self.missed_words.read_words()
 
     def start_display(self):
         """start_display - instantiate the screen member
@@ -114,7 +116,7 @@ class TUI(CLI):
                 result.append((word, self.last_message))            
                 if word != self.last_message:
                     self.score['missed'] += 1
-                    self.missed_words.add(word)
+                    self.missed_words.add_word(word)
                 else:
                     self.score['success'] += 1
                 self.display_progress()
