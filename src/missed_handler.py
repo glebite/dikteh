@@ -40,7 +40,7 @@ class MissedWords:
     """MissedWords
     """
     def __init__(self, file_name = None):
-        """
+        """__init__
         """
         if not file_name:
             raise ValueError(f'file_name needs to be not NULL')
@@ -48,7 +48,7 @@ class MissedWords:
         self.missed_words = dict()
 
     def read_words(self):
-        """
+        """read_words
         """
         if not os.path.isfile(self.missed_file):
             raise FileNotFoundError(
@@ -58,13 +58,13 @@ class MissedWords:
             self.missed_words = json.loads(temp)
 
     def write_words(self):
-        """
+        """write_words 
         """
         with open(self.missed_file, 'w') as fp:
             fp.write(str(self.missed_words))
 
     def add_word(self, word):
-        """
+        """add_word
         """
         if word in self.missed_words.keys():
             self.missed_words[word] += 1
@@ -72,7 +72,7 @@ class MissedWords:
             self.missed_words[word] = 3
 
     def del_word(self, word):
-        """
+        """del_world
         """
         if word in self.missed_words.keys():
             if self.missed_words[word] == 1:
