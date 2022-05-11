@@ -127,7 +127,7 @@ class TUI(CLI):
     def create_report(self):
         """ create_report
         """
-        for missed_word in self.missed_words:
+        for missed_word in self.missed_words.missed_words.keys():
             print(f'Missed: {missed_word}')
 
 

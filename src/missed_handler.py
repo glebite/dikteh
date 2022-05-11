@@ -50,12 +50,10 @@ class MissedWords:
     def read_words(self):
         """read_words
         """
-        if not os.path.isfile(self.missed_file):
-            raise FileNotFoundError(
-                errno.ENOENT, os.strerror(errno.ENOENT), self.missed_file)        
-        with open(self.missed_file, 'r') as fp:
-            temp = fp.read()
-            self.missed_words = json.loads(temp)
+        if os.path.isfile(self.missed_file):
+            with open(self.missed_file, 'r') as fp:
+                temp = fp.read()
+                self.missed_words = json.loads(temp)
 
     def write_words(self):
         """write_words 
