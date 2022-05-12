@@ -58,8 +58,9 @@ class MissedWords:
     def write_words(self):
         """write_words 
         """
+        output = str(self.missed_words).replace("'", '"')
         with open(self.missed_file, 'w') as fp:
-            fp.write(str(self.missed_words))
+            fp.write(output)
 
     def add_word(self, word):
         """add_word
