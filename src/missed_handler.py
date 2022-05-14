@@ -32,9 +32,7 @@ If the word is still mispelled, the value is incremented by
 Eventually, they will hear "thesaurus" and spell it correctly.
 """
 import json
-import errno
 import os
-import re
 
 
 class MissedWords:
@@ -44,7 +42,7 @@ class MissedWords:
         """__init__
         """
         if not file_name:
-            raise ValueError(f'file_name needs to be not NULL')
+            raise ValueError(f'{file_name=} needs to be not NULL')
         self.missed_file = file_name
         self.missed_words = dict()
 
@@ -64,6 +62,13 @@ class MissedWords:
 
     def add_word(self, word):
         """add_word
+
+        The logic here is that an existing missed_word
+        which is missed again gets its counter score
+        to increment by one.
+
+        A missed_word doesn't exist in the list of missed
+        words, it gets a default value of 3.
         """
         if word in self.missed_words.keys():
             self.missed_words[word] += 1
@@ -72,17 +77,14 @@ class MissedWords:
 
     def del_word(self, word):
         """del_world
+
+        If the missed word counter is one, we delete
+        the missing word from the storage.
+
+        Otherwise, we just knock off the counter by 1.
         """
         if word in self.missed_words.keys():
             if self.missed_words[word] == 1:
                 del self.missed_words[word]
             else:
                 self.missed_words[word] -= 1
-
-
-if __name__ == "__main__":
-    x = MissedWords('missed_words2.json')
-    x.read_words()
-    print(x.missed_words)
-    x.add_word('Hello')
-    x.write_words()
