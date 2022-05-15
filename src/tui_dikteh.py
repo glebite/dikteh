@@ -7,6 +7,7 @@ import time
 import configparser
 from missed_handler import MissedWords
 from cli_dikteh import CLI
+import random
 
 
 TITLE_COORDS = (0,0)
@@ -97,6 +98,12 @@ class TUI(CLI):
         self.label(SUCCESS_COORDS,  f'Success: {self.score["success"]}')
         self.label(MISSED_COORDS, f'Missed : {self.score["missed"]}')        
 
+    def pick_previously_failed_word(self):
+        return_val = None
+        if len(self.missed_words.missed_words):
+            return_val = random.choice(list(self.missed_words.missed_words))
+        return return_val
+    
     """ interaction code """
     def game_play(self):
         """ game_play
@@ -104,8 +111,11 @@ class TUI(CLI):
         result = list()
         self.start_display()
         self.display_progress()
+        pickword = self.pick_previously_failed_word()
+        
         for round in range(self.sentences_to_play):
-            x = self.pick_random_sentence()
+            x = self.pick_random_sentence(bias=pickword)
+            pickword = None
             sentence = self.remove_punctuation(x).split()
             for word in sentence:
                 word = self.remove_punctuation(word).lower().replace("’", "'")

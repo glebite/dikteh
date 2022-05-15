@@ -26,11 +26,11 @@ class CLI:
         """
         self.df = pd.read_excel(self.wordfile)
 
-    def pick_random_sentence(self):
+    def pick_random_sentence(self, bias=None):
         """pick_random_sentence - pick a random one
 
         params:
-        n/a
+        bias - string - a failed word to use
 
         returns:
         a sample from the list of sentences by value
