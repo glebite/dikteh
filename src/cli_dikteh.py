@@ -38,6 +38,12 @@ class CLI:
         raises:
         n/a
         """
+        if bias:
+            done = False
+            while not done:
+                sentence = self.df.sample()['Sentence'].values
+                if bias in sentence:
+                    return sentence
         return self.df.sample()['Sentence'].values
 
     def remove_punctuation(self, sentence):
