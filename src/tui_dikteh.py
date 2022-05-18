@@ -129,6 +129,7 @@ class TUI(CLI):
                     self.missed_words.add_word(word)
                 else:
                     self.score['success'] += 1
+                    self.missed_words.del_word(word)
                 self.display_progress()
             self.current_sentence += 1
             self.display_progress()

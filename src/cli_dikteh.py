@@ -39,9 +39,7 @@ class CLI:
         n/a
         """
         if bias:
-            done = False
-            while not done:
-                sentence = self.df.sample()['Sentence'].values
+            for sentence in self.df['Sentence'].values:
                 if bias in sentence:
                     return sentence
         return self.df.sample()['Sentence'].values
