@@ -19,6 +19,7 @@ EXPECTED_COORDS = (10, 5)
 YOUR_COORDS = (15,5)
 LAST_RESPONSE_SIZE = (3, 50)
 NEW_SENTENCE_COORDS = (3,5)
+LAST_SENTENCE_COORDS = (20,5)
 
 class TUI(CLI):
     """TUI 
@@ -134,6 +135,7 @@ class TUI(CLI):
                     self.missed_words.del_word(word)
                 self.display_progress()
                 self.label(NEW_SENTENCE_COORDS, '            ')
+            self.label(LAST_SENTENCE_COORDS, x)
             self.current_sentence += 1
             self.display_progress()
         self.stop_display()
