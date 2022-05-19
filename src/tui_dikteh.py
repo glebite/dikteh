@@ -18,6 +18,7 @@ TEXT_INPUT_COORDS = (5,5)
 EXPECTED_COORDS = (10, 5)
 YOUR_COORDS = (15,5)
 LAST_RESPONSE_SIZE = (3, 50)
+NEW_SENTENCE_COORDS = (3,5)
 
 class TUI(CLI):
     """TUI 
@@ -114,6 +115,7 @@ class TUI(CLI):
         pickword = self.pick_previously_failed_word()
         
         for round in range(self.sentences_to_play):
+            self.label(NEW_SENTENCE_COORDS, 'New Sentence')
             x = self.pick_random_sentence(bias=pickword)
             pickword = None
             sentence = self.remove_punctuation(x).split()
@@ -131,6 +133,7 @@ class TUI(CLI):
                     self.score['success'] += 1
                     self.missed_words.del_word(word)
                 self.display_progress()
+                self.label(NEW_SENTENCE_COORDS, '            ')
             self.current_sentence += 1
             self.display_progress()
         self.stop_display()
