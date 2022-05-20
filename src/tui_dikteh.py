@@ -20,6 +20,7 @@ YOUR_COORDS = (15,5)
 LAST_RESPONSE_SIZE = (3, 50)
 NEW_SENTENCE_COORDS = (3,5)
 LAST_SENTENCE_COORDS = (20,5)
+LAST_SENTENCE_SIZE = (5, 40)
 
 class TUI(CLI):
     """TUI 
@@ -105,6 +106,18 @@ class TUI(CLI):
         if len(self.missed_words.missed_words):
             return_val = random.choice(list(self.missed_words.missed_words))
         return return_val
+
+    def display_last_sentence(self, title, words):
+        row, column = LAST_SENTENCE_COORDS
+        height, width = LAST_RESPONSE_SIZE
+        self.stdscr.addstr(row-1, column, title)
+        self.outwin = self.stdscr.subwin(height, width, row, column)
+        self.outwin.immedok(True)
+        self.outwin.box()
+        self.outwin.addstr(1, 1, " " * 36)
+        self.outwin.addstr(1, 1, words)
+        self.stdscr.refresh()        
+
     
     """ interaction code """
     def game_play(self):
@@ -135,7 +148,7 @@ class TUI(CLI):
                     self.missed_words.del_word(word)
                 self.display_progress()
                 self.label(NEW_SENTENCE_COORDS, '            ')
-            self.label(LAST_SENTENCE_COORDS, x)
+            self.display_last_sentence('Last Sentence:', x)
             self.current_sentence += 1
             self.display_progress()
         self.stop_display()
