@@ -2,7 +2,7 @@
 A thought to continue to expand my and other's studies...  
 
 ## Introduction  
-Learning a language can be difficult.  People can read books, follow study guides, write out word after word but still not quite master the use of a language.  Speaking is a huge part of communication but the strongest part involves listening.  Stopping, listening, and demonstrating an understanding of each word is so powerful.  
+Learning a language can be difficult.  This is true.    People can read books, follow study guides, write out word after word but still not quite master the use of a language.  Speaking is a huge part of communication but the strongest part involves listening.  Stopping, listening, and demonstrating an understanding of each word is so powerful.  
 
 That is what this tool/programme does - it takes listening (dikteh) onto a whole new level by allowing for listening, writing down the heard word and then receiving immediate feedback from the original source text.  
 
