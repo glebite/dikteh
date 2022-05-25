@@ -39,7 +39,16 @@ class MissedWords:
     """MissedWords
     """
     def __init__(self, file_name = None):
-        """__init__
+        """__init__ - initializer for MissedWords
+
+        params:
+        file_name - string - defaults to None
+
+        returns:
+        n/a
+
+        raises:
+        n/a
         """
         if not file_name:
             raise ValueError(f'{file_name=} needs to be not NULL')
@@ -47,7 +56,16 @@ class MissedWords:
         self.missed_words = dict()
 
     def read_words(self):
-        """read_words
+        """read_words - retrieve the files from the file
+        
+        params:
+        n/a
+
+        returns:
+        n/a
+
+        raises:
+        n/a
         """
         if os.path.isfile(self.missed_file):
             with open(self.missed_file, 'r') as fp:
@@ -55,7 +73,16 @@ class MissedWords:
                 self.missed_words = json.loads(temp)
 
     def write_words(self):
-        """write_words 
+        """write_words - write out the words to the file
+
+        params:
+        n/a
+        
+        returns:
+        n/a
+
+        raises:
+        n/a
         """
         with open(self.missed_file, 'w') as fp:
             fp.write(json.dumps(self.missed_words))
