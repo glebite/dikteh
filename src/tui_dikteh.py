@@ -20,7 +20,7 @@ YOUR_COORDS = (15,5)
 LAST_RESPONSE_SIZE = (3, 50)
 NEW_SENTENCE_COORDS = (3,5)
 LAST_SENTENCE_COORDS = (20,5)
-LAST_SENTENCE_SIZE = (5, 40)
+LAST_SENTENCE_SIZE = (8, 60)
 
 class TUI(CLI):
     """TUI 
@@ -109,16 +109,15 @@ class TUI(CLI):
 
     def display_last_sentence(self, title, words):
         row, column = LAST_SENTENCE_COORDS
-        height, width = LAST_RESPONSE_SIZE
+        height, width = LAST_SENTENCE_SIZE
         self.stdscr.addstr(row-1, column, title)
         self.outwin = self.stdscr.subwin(height, width, row, column)
         self.outwin.immedok(True)
         self.outwin.box()
-        self.outwin.addstr(1, 1, " " * 36)
+        self.outwin.addstr(1, 1, " " * (width-2))
         self.outwin.addstr(1, 1, words)
         self.stdscr.refresh()        
 
-    
     """ interaction code """
     def game_play(self):
         """ game_play
