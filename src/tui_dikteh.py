@@ -55,11 +55,20 @@ class TUI(CLI):
         self.stdscr.refresh()
 
     def user_input(self, row, col):
+        """user_input - handle a user input region
+        
+        params:
+        row - int - the row (y) to draw the segment
+        col - int - the column (x) to draw the segment
+
+        returns:
+        user_input - string - contains what the user typed
+        """
         curses.echo()
         self.stdscr.refresh()
         self.stdscr.addstr(row + 1, col +1, " " * 36)
-        input = self.stdscr.getstr(row + 1, col + 1, 40)
-        return input
+        user_input = self.stdscr.getstr(row + 1, col + 1, 40)
+        return user_input
     
     def text_input(self, row_col, width_height):
         """text_input - text box
