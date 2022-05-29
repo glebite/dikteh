@@ -72,6 +72,16 @@ class TUI(CLI):
     
     def text_input(self, row_col, width_height):
         """text_input - text box
+        
+        params:
+        row_col - tuple - the row and column of the box
+        width_height - tuple - width and height
+
+        return:
+        n/a
+
+        raises:
+        n/a
         """
         row, column = row_col
         width, height = width_height
@@ -100,7 +110,7 @@ class TUI(CLI):
     def __del__(self):
         """__del__ - handle the destruction of the object
         """
-        # self.stop_display()
+        pass
 
     def display_progress(self):
         """ display_progress
