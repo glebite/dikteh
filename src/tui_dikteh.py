@@ -3,7 +3,6 @@
 import sys
 import curses
 import curses.textpad
-import time
 import configparser
 from missed_handler import MissedWords
 from cli_dikteh import CLI
