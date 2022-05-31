@@ -120,6 +120,10 @@ class TUI(CLI):
         self.label(MISSED_COORDS, f'Missed : {self.score["missed"]}')        
 
     def pick_previously_failed_word(self):
+        """
+        Pick a word that had been previously failed.  But only
+        if there are failed words.  :)
+        """
         return_val = None
         if len(self.missed_words.missed_words):
             return_val = random.choice(list(self.missed_words.missed_words))
