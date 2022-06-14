@@ -1,5 +1,5 @@
 """
-speech.py - the 
+speech.py - the basis of all good things.
 
 """
 import platform
