@@ -15,6 +15,8 @@ class Speaker:
         pass
 
     def configure(self):
+        """
+        """
         self.platform = platform.system()
         if self.platform == 'Windows':
             import win32com.client
@@ -22,7 +24,6 @@ class Speaker:
             self.speaker_function = self._winspeak
         elif self.platform == 'Linux':
             import distutils.spawn
-            import os
             if not distutils.spawn.find_executable('espeak'):
                 raise RuntimeError('espeak not found - install it.')
             self.speaker_function = self._linspeak
@@ -30,11 +31,13 @@ class Speaker:
             raise ValueError(f'Unkown os: {self.platform=}')
 
     def _winspeak(self, message):
-        """
+        """_winspeak - windows speak message
         """
         self.speaker.Speak(message)
 
     def _linspeak(self, message):
+        """_linspeak - linux speak message
+        """
         os.system(f'espeak "{message}"')
 
     def speak(self, message):
