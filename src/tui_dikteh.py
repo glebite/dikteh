@@ -4,9 +4,9 @@ import sys
 import curses
 import curses.textpad
 import configparser
+import random
 from missed_handler import MissedWords
 from cli_dikteh import CLI
-import random
 
 
 TITLE_COORDS = (0,0)
@@ -21,8 +21,11 @@ NEW_SENTENCE_COORDS = (3,5)
 LAST_SENTENCE_COORDS = (20,5)
 LAST_SENTENCE_SIZE = (8, 60)
 
+
 class TUI(CLI):
-    """TUI 
+    """TUI - text UI class
+
+    This text UI uses curses - handy indeed for terminals.
     """
     def __init__(self, wordfile, sentence_count):
         super(TUI, self).__init__(wordfile , sentence_count)
