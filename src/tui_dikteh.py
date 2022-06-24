@@ -136,7 +136,8 @@ class TUI(CLI):
         row, column = LAST_SENTENCE_COORDS
         height, width = LAST_SENTENCE_SIZE
         self.stdscr.addstr(row-1, column, title)
-        self.outwin = self.stdscr.subwin(height, width, row, column)
+        self.outwin = curses.newpad(height, width)
+        self.outwin.scrollok(1)
         self.outwin.immedok(True)
         self.outwin.box()
         self.outwin.addstr(1, 1, " " * (width-2))
